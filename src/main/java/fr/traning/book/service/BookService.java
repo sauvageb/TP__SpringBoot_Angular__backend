@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,5 +40,11 @@ public class BookService {
                 .stream()
                 .map(book -> bookMapper.bookToBookDto(book))
                 .collect(Collectors.toList());
+    }
+
+    public Optional<BookDto> searchSpecificBook(long id) {
+        return bookRepository
+                .findById(id)
+                .map(book -> bookMapper.bookToBookDto(book));
     }
 }

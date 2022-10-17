@@ -63,4 +63,21 @@ public class BookService {
         Book newBook = bookMapper.createBookToBook(book);
         return bookMapper.bookToBookDto(bookRepository.save(newBook));
     }
+
+    public Optional<BookDto> updateSpecificBook(long id, CreateBook dto) {
+        return bookRepository
+                .findById(id)
+                .map(book -> {
+                    book.setTitle(dto.getTitle());
+                    book.setPictureUrl(dto.getPictureUrl());
+                    book.setDescription(dto.getDescription());
+                    book.setISBN(dto.getISBN());
+                    book.setNbPages(dto.getNbPages());
+                    book.setWeight(dto.getWeight());
+                    book.setPublished(dto.isPublished());
+                    book.setPublishingDate(dto.getPublishingDate());
+                    return Optional.of(bookMapper.bookToBookDto(bookRepository.save(book)));
+                })
+                .orElse(Optional.empty());
+    }
 }

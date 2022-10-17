@@ -56,6 +56,13 @@ public class BookController {
         }
     }
 
+    @PutMapping("/books/{id}")
+    public ResponseEntity<BookDto> updateBook(@PathVariable("id") long id, @RequestBody CreateBook dto) {
+        Optional<BookDto> updatedBook = bookService.updateSpecificBook(id, dto);
+        return updatedBook
+                .map(bookDto -> new ResponseEntity<>(bookDto, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 
     @DeleteMapping("/books/{id}")
     public ResponseEntity<HttpStatus> deleteBook(@PathVariable("id") long id) {

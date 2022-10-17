@@ -47,4 +47,14 @@ public class BookService {
                 .findById(id)
                 .map(book -> bookMapper.bookToBookDto(book));
     }
+
+    public boolean removeAllBooks() {
+        bookRepository.deleteAll();
+        return true;
+    }
+
+    public boolean removeSpecificBook(long id) {
+        bookRepository.deleteById(id);
+        return true;
+    }
 }

@@ -45,6 +45,25 @@ public class BookController {
         }
     }
 
+    @DeleteMapping("/books/{id}")
+    public ResponseEntity<HttpStatus> deleteBook(@PathVariable("id") long id) {
+        try {
+            bookService.removeSpecificBook(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/books")
+    public ResponseEntity<HttpStatus> deleteAllBooks() {
+        try {
+            bookService.removeAllBooks();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/books/published")
     public ResponseEntity<List<BookDto>> findByPublished() {

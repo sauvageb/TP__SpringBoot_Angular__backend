@@ -1,6 +1,7 @@
 package fr.traning.book.controller;
 
 import fr.traning.book.controller.dto.BookDto;
+import fr.traning.book.controller.dto.CreateBook;
 import fr.traning.book.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,17 @@ public class BookController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/books")
+    public ResponseEntity<BookDto> createBook(@RequestBody CreateBook book) {
+        try {
+            BookDto createdBook = bookService.createBook(book);
+            return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @DeleteMapping("/books/{id}")
     public ResponseEntity<HttpStatus> deleteBook(@PathVariable("id") long id) {

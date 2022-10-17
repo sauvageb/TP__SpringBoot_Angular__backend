@@ -2,6 +2,7 @@ package fr.traning.book.service;
 
 import fr.traning.book.controller.dto.BookDto;
 import fr.traning.book.controller.dto.BookMapper;
+import fr.traning.book.controller.dto.CreateBook;
 import fr.traning.book.model.Book;
 import fr.traning.book.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -56,5 +57,10 @@ public class BookService {
     public boolean removeSpecificBook(long id) {
         bookRepository.deleteById(id);
         return true;
+    }
+
+    public BookDto createBook(CreateBook book) {
+        Book newBook = bookMapper.createBookToBook(book);
+        return bookMapper.bookToBookDto(bookRepository.save(newBook));
     }
 }

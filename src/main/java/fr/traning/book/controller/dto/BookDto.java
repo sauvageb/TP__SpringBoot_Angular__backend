@@ -1,12 +1,14 @@
 package fr.traning.book.controller.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class BookDto {
     private long id;
     private String title;

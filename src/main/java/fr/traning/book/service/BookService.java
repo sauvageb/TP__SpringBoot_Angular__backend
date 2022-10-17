@@ -33,4 +33,11 @@ public class BookService {
                 .map(book -> bookMapper.bookToBookDto(book))
                 .collect(Collectors.toList());
     }
+
+    public List<BookDto> fetchAllPublishedBooks() {
+        return bookRepository.findByPublished(true)
+                .stream()
+                .map(book -> bookMapper.bookToBookDto(book))
+                .collect(Collectors.toList());
+    }
 }

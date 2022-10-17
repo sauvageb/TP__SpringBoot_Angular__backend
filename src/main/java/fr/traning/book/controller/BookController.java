@@ -1,7 +1,6 @@
 package fr.traning.book.controller;
 
 import fr.traning.book.controller.dto.BookDto;
-import fr.traning.book.controller.dto.CreateBook;
 import fr.traning.book.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +34,18 @@ public class BookController {
     }
 
 
+    @GetMapping("/books/published")
+    public ResponseEntity<List<BookDto>> findByPublished() {
+        try {
+            List<BookDto> books = bookService.fetchAllPublishedBooks();
 
+            if (books.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(books, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

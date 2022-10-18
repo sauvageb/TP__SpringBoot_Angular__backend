@@ -3,7 +3,7 @@ package fr.traning.book.service;
 import fr.traning.book.controller.dto.BookDto;
 import fr.traning.book.controller.dto.BookMapper;
 import fr.traning.book.controller.dto.CreateBook;
-import fr.traning.book.model.Book;
+import fr.traning.book.repository.entity.Book;
 import fr.traning.book.repository.BookRepository;
 import org.springframework.stereotype.Service;
 

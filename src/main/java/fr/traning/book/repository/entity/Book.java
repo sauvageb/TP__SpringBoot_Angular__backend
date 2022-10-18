@@ -1,4 +1,4 @@
-package fr.traning.book.model;
+package fr.traning.book.repository.entity;
 
 import lombok.*;
 

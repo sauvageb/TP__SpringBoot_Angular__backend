@@ -1,6 +1,6 @@
 package fr.traning.book.controller.dto;
 
-import fr.traning.book.model.Book;
+import fr.traning.book.repository.entity.Book;
 import org.mapstruct.Mapper;
 
 @Mapper(
